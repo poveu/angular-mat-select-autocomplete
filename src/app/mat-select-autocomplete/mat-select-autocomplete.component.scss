@@ -1,0 +1,48 @@
+$color-white: #FFFFFF;
+$color-black: #111111;
+
+::ng-deep .cdk-overlay-pane {
+  transform: none !important;
+
+  .mat-select-panel-wrap {
+    background-color: transparent;
+    transition: background-color .2s ease-out;
+  }
+
+  .autocomplete-panel {
+    min-width: 100% !important;
+  }
+}
+
+.search {
+  background-color: $color-white;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.3), 0 -8px 0 8px $color-white;
+  cursor: text;
+  margin: 8px;
+  position: sticky;
+  top: 8px;
+  z-index: 1;
+
+  &.mat-option:hover:not(.mat-option-disabled) {
+    background-color: $color-white;
+  }
+}
+
+::ng-deep .none-option {
+  &,
+  &.mat-option.mat-active {
+    color: lighten($color-black, 60%) !important;
+  }
+}
+
+::ng-deep .pseudo-option {
+  .mat-pseudo-checkbox {
+    display: none;
+  }
+}
+
+::ng-deep .mat-select-panel {
+  scroll-behavior: smooth;
+}

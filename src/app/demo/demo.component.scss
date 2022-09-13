@@ -1,0 +1,19 @@
+:host {
+  padding: 2em;
+  display: block;
+}
+
+pre {
+  padding: 1em;
+}
+
+.container {
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+
+  > div {
+    flex-basis: 45%;
+    flex-grow: 1;
+  }
+}

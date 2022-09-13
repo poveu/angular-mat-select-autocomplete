@@ -1,0 +1,30 @@
+<div class="container">
+
+  <div>
+    <app-mat-select-autocomplete [options]="testOptions"
+                                 [selectedOptions]="firstOptions"
+                                 [multiple]="false"
+                                 [allowNone]="true"
+                                 (selectedOptionsChange)="onFirstSelectedOptionsChange($event)"
+                                 label="Select one option"></app-mat-select-autocomplete>
+
+    Selected option:
+    <pre class="mat-elevation-z2"
+         @highlight
+         *ngFor="let firstSelectOptions of [firstOptions]">{{ firstSelectOptions | json }}</pre>
+  </div>
+
+  <div>
+    <app-mat-select-autocomplete [options]="testOptions"
+                                 [selectedOptions]="secondOptions"
+                                 [multiple]="true"
+                                 (selectedOptionsChange)="onSecondSelectedOptionsChange($event)"
+                                 label="Select multiple options"></app-mat-select-autocomplete>
+
+    Selected options:
+    <pre class="mat-elevation-z2"
+         @highlight
+         *ngFor="let secondSelectOptions of [secondOptions]">{{ secondSelectOptions | json }}</pre>
+  </div>
+
+</div>

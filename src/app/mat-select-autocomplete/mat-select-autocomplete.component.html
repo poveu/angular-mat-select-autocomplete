@@ -1,0 +1,55 @@
+<mat-form-field [appearance]="appearance" class="w-100 appearance-{{ appearance }}">
+  <mat-label>{{ label }}</mat-label>
+
+  <mat-select [formControl]="selectedOptionsFormControl"
+              [multiple]="multiple"
+              [disableOptionCentering]="true"
+              (selectionChange)="focusSearch()"
+              (opened)="onSelectOpened()"
+              #matSelect
+              panelClass="autocomplete-panel"
+              (closed)="onSelectClosed()">
+
+    <div class="mat-option search">
+      <input matInput
+             [ngModel]="search$ | async"
+             (ngModelChange)="search$.next($event)"
+             type="text"
+             #searchInput
+             autocomplete="off"
+             placeholder="Search...">
+    </div>
+
+    <mat-select-trigger *ngIf="selectedOptionsCount$ | async as selectedOptionsCount">
+      <span *ngIf="selectedOptionsCount === 1">
+          {{ (selectedOptions$ | async)?.[0]?.label }}
+      </span>
+      <span *ngIf="selectedOptionsCount > 1">
+        Selected options: {{ selectedOptionsCount }}
+      </span>
+    </mat-select-trigger>
+
+    <ng-container *ngIf="filteredOptions$ | async as filteredOptions">
+
+      <ng-container *ngIf="filteredOptions.length; else noResults">
+
+        <mat-option *ngIf="!multiple && allowNone" class="none-option">– None –</mat-option>
+
+        <mat-option *ngFor="let option of filteredOptions; trackBy: trackById"
+                    [value]="option">
+          {{ option.label }}
+        </mat-option>
+
+      </ng-container>
+
+      <ng-template #noResults>
+        <div class="pseudo-option">
+          <mat-option [disabled]="true">No results</mat-option>
+        </div>
+      </ng-template>
+
+    </ng-container>
+
+  </mat-select>
+
+</mat-form-field>
